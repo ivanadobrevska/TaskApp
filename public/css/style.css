@@ -1,0 +1,6 @@
+input, button, textarea {
+    width: 100%;
+}
+input, button, label, textarea {
+    margin-top: 20px;
+}
