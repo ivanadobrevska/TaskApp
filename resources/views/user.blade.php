@@ -8,9 +8,14 @@
                 </button>
                 <div class="collapse" id="collapseActivity" style="margin-top: 10px;">
                     <div class="card card-body">
-                        <form action="/addActivity" method="POST">
+                        <form action="{{route('addActivity')}}" method="POST">
                             @csrf
                             <input type="number" name="userid" value="{{session()->get('id')}}" hidden>
+                            <div class="row">
+                                @if (session()->has('activityError'))
+                                    <p class="text-danger">{{ session()->get('activityError') }}</p>
+                                @endif
+                            </div>
                             <div class="row">
                                 <div class="col-4">
                                     <label for="activity_date">Activity Date</label>
@@ -63,7 +68,7 @@
                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMail" aria-expanded="false" aria-controls="collapseMail">Send Report</button>
                 <div class="collapse" id="collapseMail" style="margin-top: 10px;">
                     <div class="card card-body">
-                        <form action="/sendEmail" method="post">
+                        <form action="{{route('sendEmail')}}" method="post">
                             @csrf
                             <input type="number" name="userid" value="{{session()->get('id')}}" hidden>
                             <input type="email" name="email" id="email" placeholder="Enter Report recipient" required>
@@ -81,7 +86,7 @@
                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInterval" aria-expanded="false" aria-controls="collapseInterval">Show Activities in Apropriate Time Interval</button>
                 <div class="collapse" id="collapseInterval" style="margin-top: 10px;">
                     <div class="card card-body">
-                        <form action="/selectInterval" method="post">
+                        <form action="{{route('selectInterval')}}" method="post">
                             @csrf
                             <input type="number" name="userid" value="{{session()->get('id')}}" hidden>
                             <input type="date" name="start_date" id="start_date" placeholder="Enter Starting Date" required>

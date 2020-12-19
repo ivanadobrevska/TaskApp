@@ -6,12 +6,15 @@
            <div class="col-6 offset-3">
                <div class="card" style="background-color: #0d6efd66;">
                     <div class="card-body">
-                        <form action="/login" method="post">
+                        <form action="{{route('login')}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-12 text-center">
                                     @if (session()->has('message'))
                                         <p class="text-danger">{{ session()->get('message') }}</p>
+                                    @endif
+                                    @if (isset($error))
+                                        <p class="text-danger">{{ $error }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -47,6 +50,11 @@
                                 </div>
                             </div>
                         </form>
+                        <div class="row">
+                            <div class="col-4 offset-4">
+                                <a class="btn btn-success" href="{{route('register')}}">Register</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
            </div>
